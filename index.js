@@ -31,28 +31,30 @@ function createRoutes() {
   const precisamSaidas = ["nordeste", "centro-oeste", "sul"]
 
   let counter = 0;
-  for(let i=0; i<routes.length;i++) {
-    if(!routes[i].entrada.length) {
-      let j = 0;
-      if(precisamSaidas[0] === routes[i].saida[0]) {
-        j++;
-        routes[i].entrada.push(precisamSaidas[j]);
-      } else {
-        routes[i].entrada.push(precisamSaidas[j]);
+  while(counter < 3) {
+    for(let i=0; i<routes.length;i++) {
+      if(!routes[i].entrada.length) {
+        let j = 0;
+        if(precisamSaidas[0] === routes[i].saida[0]) {
+          j++;
+          routes[i].entrada.push(precisamSaidas[j]);
+        } else {
+          routes[i].entrada.push(precisamSaidas[j]);
+        }
+        precisamSaidas.splice(j, 1);
+        counter++;
       }
-      precisamSaidas.splice(j, 1);
-      counter++;
-    }
-    if(!routes[i].saida.length) {
-      let j = 0;
-      if(precisamEntradas[0] === routes[i].entrada[0]) {
-        j++;
-        routes[i].saida.push(precisamEntradas[j]);
-      } else {
-        routes[i].saida.push(precisamEntradas[j]);
+      if(!routes[i].saida.length) {
+        let j = 0;
+        if(precisamEntradas[0] === routes[i].entrada[0]) {
+          j++;
+          routes[i].saida.push(precisamEntradas[j]);
+        } else {
+          routes[i].saida.push(precisamEntradas[j]);
+        }
+        precisamEntradas.splice(j, 1);
+        counter++;
       }
-      precisamEntradas.splice(j, 1);
-      counter++;
     }
   }
 
