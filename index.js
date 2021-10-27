@@ -34,10 +34,8 @@ function createRoutes() {
   }
 
   console.log(routes);
-  console.log(counter);
+  console.log(" ");
+  console.log("Quantidade de rotas criadas: ", counter);
 }
 
 createRoutes();
-
-//pra eu sair de x regiao para y, por quantas rotas eu passo? 
-//
