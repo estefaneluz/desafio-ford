@@ -1,61 +1,36 @@
 function createRoutes() {
   routes = [
-    norte = {
-      entrada: [],
-      saida: ["nordeste"]
+    {
+      de: "norte",
+      para: "nordeste"
     },
-    nordeste = {
-      entrada: ["norte"],
-      saida: []
+    {
+      de: "sudeste",
+      para: "sul"
     },
-    sudeste = {
-      entrada: [],
-      saida: ["centro-oeste", "sul"]
+    {
+      de: "sudeste",
+      para: "centro-oeste"
     },
-    centroOeste = {
-      entrada: ["sudeste"],
-      saida: []
-    },
-    sul = {
-      entrada: ["sudeste"],
-      saida: []
-    }
   ]
 
-  //precisam de entradas:
-  // norte, sudeste
-  //precisam de saidas:
-  //nordeste, centro-oeste, sul
-
-  const precisamEntradas = ["norte", "sudeste"];
+  const precisamEntradas = ["sudeste", "norte"];
   const precisamSaidas = ["nordeste", "centro-oeste", "sul"]
+  const regioes = ["norte", "nordeste", "centro-oeste", "sul"]
 
   let counter = 0;
+  let i = 0;
+  let j = 0;
   while(counter < 3) {
-    for(let i=0; i<routes.length;i++) {
-      if(!routes[i].entrada.length) {
-        let j = 0;
-        if(precisamSaidas[0] === routes[i].saida[0]) {
-          j++;
-          routes[i].entrada.push(precisamSaidas[j]);
-        } else {
-          routes[i].entrada.push(precisamSaidas[j]);
-        }
-        precisamSaidas.splice(j, 1);
-        counter++;
-      }
-      if(!routes[i].saida.length) {
-        let j = 0;
-        if(precisamEntradas[0] === routes[i].entrada[0]) {
-          j++;
-          routes[i].saida.push(precisamEntradas[j]);
-        } else {
-          routes[i].saida.push(precisamEntradas[j]);
-        }
-        precisamEntradas.splice(j, 1);
-        counter++;
-      }
-    }
+    routes.push({
+      de: precisamSaidas[j],
+      para: precisamEntradas[i] ? precisamEntradas[i] : regioes[0] 
+    })
+
+    if(!precisamEntradas[i]) regioes.splice(0, 1);
+    i++
+    j++;
+    counter++;
   }
 
   console.log(routes);
