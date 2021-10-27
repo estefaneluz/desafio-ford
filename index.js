@@ -22,12 +22,17 @@ function createRoutes() {
   let i = 0;
   let j = 0;
   while(counter < 3) {
-    routes.push({
-      de: precisamSaidas[j],
+    const route = {
+      de: precisamSaidas[j] ? precisamSaidas[j] : regioes[0],
       para: precisamEntradas[i] ? precisamEntradas[i] : regioes[0] 
-    })
+    }
+
+    if(route.de === route.para) route.de = regioes[1];
+
+    routes.push(route);
 
     if(!precisamEntradas[i]) regioes.splice(0, 1);
+    if(!precisamSaidas[i]) regioes.splice(0, 1);
     i++
     j++;
     counter++;
